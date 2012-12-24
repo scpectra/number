@@ -18,27 +18,33 @@ part of number;
    may be switched on or off as desired.  It is automatically on if the Quantity
    is constructed with any uncertainty and off otherwise.  The setCalcUncertainty
    method may be called at any point to enable/disable this capability.<p>
- * 
+ *
  */
 abstract class Number {
-  
-  // num, 
-  Object _value;
-  
+
+  num _value;
+
   /**
-   * Sets whether or not uncertainty is to be calculated within 
+   * Sets whether or not uncertainty is to be calculated within
    * mathematical methods.
    */
   bool _calcUncertainty = false;
-  
+
   /** The relative uncertainty. */
   double _ur = 0.0;
-  
+
+  bool immutable;
+
+
+  Number([this._value, this.relativeUncertainty, this.immutable]);
+
   Object get value => _value;
 
   set value(Number number);
-  
-  
+
+  Number operator * (Number n);
+
+
 
   /**
      Gets the relative standard uncertainty in this number.
@@ -75,5 +81,14 @@ abstract class Number {
     if(immutable) throw new ImmutableQuantityException("In Quantity.setRelativeUncertainty",this);
     this._ur = value;
   }
+
+  /**
+     Compares this Number to another Number by comparing MKS values.
+   */
+  int compareTo(Comparable n2) {
+    if(n2 is! Number) throw new ArgumentError();
+    return Comparable.compare(this._value, (n2 as Number)._value);
+  }
+
 
 }

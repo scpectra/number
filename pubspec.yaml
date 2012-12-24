@@ -1,6 +1,6 @@
 name:  number
-description:  Number Library
+description:  A more generalized modeling of numbers than provided in Dart's core.
 
-#dependencies:
-#  js: any
-#  unittest: any
+dependencies:
+  unittest:
+    sdk: unittest
