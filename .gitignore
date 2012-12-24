@@ -2,6 +2,11 @@
 ## Eclipse
 #################
 
+packages/
+*/packages/
+web/packages/
+*/docs/
+
 *.pydevproject
 .project
 .metadata
